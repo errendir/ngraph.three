@@ -1,6 +1,6 @@
 var THREE = require('three');
 
-module.exports = function (graph, settings) {
+module.exports = function (graph, realLayout, settings) {
   var merge = require('ngraph.merge');
   settings = merge(settings, {
     interactive: true
@@ -9,7 +9,7 @@ module.exports = function (graph, settings) {
   var beforeFrameRender;
   var isStable = false;
   var disposed = false;
-  var layout = createLayout(settings);
+  var layout = realLayout//createLayout(settings);
   var renderer = createRenderer(settings);
   var camera = createCamera(settings);
   var scene = settings.scene || new THREE.Scene();

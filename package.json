@@ -1,9 +1,10 @@
 {
   "name": "ngraph.three",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "3D graph rendered powered by three.js",
   "main": "index.js",
   "scripts": {
+    "start": "parcel watch index.html",
     "peers": "npm-install-peers",
     "examples": "npm run peers && cd ./example/basic && browserify -s ngraph index.js  > bundle.js; cd ../dynamic && browserify -s ngraph index.js  > bundle.js"
   },
@@ -20,8 +21,10 @@
     "url": "https://github.com/anvaka/ngraph.three"
   },
   "dependencies": {
-    "ngraph.forcelayout3d": "^0.0.15",
-    "ngraph.merge": "^0.0.1",
+    "ngraph.forcelayout3d": "^1.0.0",
+    "ngraph.merge": "^1.0.0",
+    "parcel-bundler": "^1.12.3",
+    "three": "^0.107.0",
     "three.trackball": "^0.0.1"
   },
   "peerDependencies": {
@@ -29,8 +32,8 @@
   },
   "devDependencies": {
     "browserify": "^12.0.1",
-    "ngraph.generators": "0.0.3",
-    "ngraph.graph": "0.0.12",
+    "ngraph.generators": "0.0.18",
+    "ngraph.graph": "0.0.14",
     "npm-install-peers": "^1.0.1-rc.3",
     "query-string": "~0.1.1"
   }
