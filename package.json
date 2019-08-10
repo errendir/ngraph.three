@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel watch index.html",
+    "build": "npx parcel build --public-url ./ example/basic/index.html",
     "peers": "npm-install-peers",
     "examples": "npm run peers && cd ./example/basic && browserify -s ngraph index.js  > bundle.js; cd ../dynamic && browserify -s ngraph index.js  > bundle.js"
   },
