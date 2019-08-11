@@ -1,4 +1,5 @@
-var THREE = require('three');
+import * as THREE from 'three'
+import { FlyControls } from 'three/examples/jsm/controls/FlyControls.js';
 
 module.exports = function (graph, realLayout, settings) {
   var merge = require('ngraph.merge');
@@ -13,6 +14,7 @@ module.exports = function (graph, realLayout, settings) {
   var renderer = createRenderer(settings);
   var camera = createCamera(settings);
   var scene = settings.scene || new THREE.Scene();
+  var clock = new THREE.Clock();
 
   var defaults = require('./lib/defaults');
 
@@ -173,17 +175,19 @@ module.exports = function (graph, realLayout, settings) {
 
     graph.on('changed', onGraphChanged);
 
-    if (settings.interactive) createControls();
+    createControls();
+    // if (settings.interactive) createControls();
   }
 
   function run() {
     if (disposed) return;
+    const delta = clock.getDelta()
 
     requestAnimationFrame(run);
     if (!isStable) {
       isStable = layout.step();
     }
-    controls.update();
+    controls.update(delta);
     renderOneFrame();
   }
 
@@ -350,12 +354,18 @@ module.exports = function (graph, realLayout, settings) {
   }
 
   function createControls() {
-    var Controls = require('three.trackball');
-    controls = new Controls(camera, renderer.domElement);
-    controls.panSpeed = 0.8;
-    controls.staticMoving = true;
-    controls.dynamicDampingFactor = 0.3;
-    controls.addEventListener('change', renderOneFrame);
+    controls = new FlyControls(camera, renderer.domElement)
+    controls.movementSpeed = 200;
+    controls.domElement = renderer.domElement;
+    controls.rollSpeed = Math.PI / 24;
+    controls.autoForward = false;
+    controls.dragToLook = true;
+    // var Controls = require('three.trackball');
+    // controls = new Controls(camera, renderer.domElement);
+    // controls.panSpeed = 0.8;
+    // controls.staticMoving = true;
+    // controls.dynamicDampingFactor = 0.3;
+    // controls.addEventListener('change', renderOneFrame);
     graphics.controls = controls;
   }
 

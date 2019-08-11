@@ -25,6 +25,7 @@
     "ngraph.merge": "^1.0.0",
     "parcel-bundler": "^1.12.3",
     "three": "^0.107.0",
+    "three.fly": "^0.1.6",
     "three.trackball": "^0.0.1"
   },
   "peerDependencies": {
