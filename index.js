@@ -23,8 +23,8 @@ function main () {
   var THREE = graphics.THREE;
   graphics.createNodeUI(function () {
     var size = Math.random() * 10 + 1;
-    var nodeGeometry = new THREE.CircleGeometry(size/2, 32);
-    // var nodeGeometry = new THREE.SphereGeometry(size/2, 32, 32);
+    // var nodeGeometry = new THREE.CircleGeometry(size/2, 32);
+    var nodeGeometry = new THREE.SphereGeometry(size/2, 7, 7);
     var nodeMaterial = new THREE.MeshBasicMaterial({ color: getNiceColor() });
     return new THREE.Mesh(nodeGeometry, nodeMaterial);
   })
